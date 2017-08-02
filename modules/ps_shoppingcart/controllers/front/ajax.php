@@ -49,5 +49,6 @@ class Ps_ShoppingcartAjaxModuleFrontController extends ModuleFrontController
             'preview' => $this->module->renderWidget(null, ['cart' => $this->context->cart]),
             'modal'   => $modal
         ]));
+		//dir("test ll");
     }
 }

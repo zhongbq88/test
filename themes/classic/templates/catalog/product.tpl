@@ -3,10 +3,10 @@
  *
  * NOTICE OF LICENSE
  *
- * This source file is subject to the Open Software License (OSL 3.0)
+ * This source file is subject to the Academic Free License 3.0 (AFL-3.0)
  * that is bundled with this package in the file LICENSE.txt.
  * It is also available through the world-wide-web at this URL:
- * http://opensource.org/licenses/osl-3.0.php
+ * https://opensource.org/licenses/AFL-3.0
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
  * to license@prestashop.com so we can send you a copy immediately.
@@ -19,7 +19,7 @@
  *
  * @author    PrestaShop SA <contact@prestashop.com>
  * @copyright 2007-2017 PrestaShop SA
- * @license   http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  *}
 {extends file=$layout}
@@ -98,6 +98,7 @@
 
             <div class="product-actions">
               {block name='product_buy'}
+              
                 <form action="{$urls.pages.cart}" method="post" id="add-to-cart-or-refresh">
                   <input type="hidden" name="token" value="{$static_token}">
                   <input type="hidden" name="id_product" value="{$product.id}" id="product_page_product_id">
@@ -144,107 +145,15 @@
               {hook h='displayReassurance'}
             {/block}
 
-            {block name='product_tabs'}
-              <div class="tabs">
-                <ul class="nav nav-tabs">
-                  {if $product.description}
-                  <li class="nav-item">
-                    <a class="nav-link{if $product.description} active{/if}" data-toggle="tab" href="#description">
-                      {l s='Description' d='Shop.Theme.Catalog'}
-                    </a>
-                  </li>
-                  {/if}
-                  <li class="nav-item">
-                    <a class="nav-link{if !$product.description} active{/if}" data-toggle="tab" href="#product-details">
-                      {l s='Product Details' d='Shop.Theme.Catalog'}
-                    </a>
-                  </li>
-                  {if $product.attachments}
-                  <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#attachments">
-                      {l s='Attachments' d='Shop.Theme.Catalog'}
-                    </a>
-                  </li>
-                  {/if}
-                  {foreach from=$product.extraContent item=extra key=extraKey}
-                  <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#extra-{$extraKey}">{$extra.title}</a>
-                  </li>
-                  {/foreach}
-                </ul>
-
-                <div class="tab-content" id="tab-content">
-                 <div class="tab-pane fade in{if $product.description} active{/if}" id="description">
-                   {block name='product_description'}
-                     <div class="product-description">{$product.description nofilter}</div>
-                   {/block}
-                 </div>
-
-                 {block name='product_details'}
-                   {include file='catalog/_partials/product-details.tpl'}
-                 {/block}
-
-                 {block name='product_attachments'}
-                   {if $product.attachments}
-                    <div class="tab-pane fade in" id="attachments">
-                       <section class="product-attachments">
-                         <h3 class="h5 text-uppercase">{l s='Download' d='Shop.Theme.Actions'}</h3>
-                         {foreach from=$product.attachments item=attachment}
-                           <div class="attachment">
-                             <h4><a href="{url entity='attachment' params=['id_attachment' => $attachment.id_attachment]}">{$attachment.name}</a></h4>
-                             <p>{$attachment.description}</p
-                             <a href="{url entity='attachment' params=['id_attachment' => $attachment.id_attachment]}">
-                               {l s='Download' d='Shop.Theme.Actions'} ({$attachment.file_size_formatted})
-                             </a>
-                           </div>
-                         {/foreach}
-                       </section>
-                     </div>
-                   {/if}
-                 {/block}
-
-                 {foreach from=$product.extraContent item=extra key=extraKey}
-                 <div class="tab-pane fade in {$extra.attr.class}" id="extra-{$extraKey}" {foreach $extra.attr as $key => $val} {$key}="{$val}"{/foreach}>
-                   {$extra.content nofilter}
-                 </div>
-                 {/foreach}
-              </div>
-            {/block}
-          </div>
+           
         </div>
       </div>
     </div>
 
-    {block name='product_accessories'}
-      {if $accessories}
-        <section class="product-accessories clearfix">
-          <h3 class="h5 text-uppercase">{l s='You might also like' d='Shop.Theme.Catalog'}</h3>
-          <div class="products">
-            {foreach from=$accessories item="product_accessory"}
-              {block name='product_miniature'}
-                {include file='catalog/_partials/miniatures/product.tpl' product=$product_accessory}
-              {/block}
-            {/foreach}
-          </div>
-        </section>
-      {/if}
-    {/block}
+  
 
-    {block name='product_footer'}
-      {hook h='displayFooterProduct' product=$product category=$category}
-    {/block}
+   
 
-    {block name='product_images_modal'}
-      {include file='catalog/_partials/product-images-modal.tpl'}
-    {/block}
-
-    {block name='page_footer_container'}
-      <footer class="page-footer">
-        {block name='page_footer'}
-          <!-- Footer content -->
-        {/block}
-      </footer>
-    {/block}
   </section>
 
 {/block}
