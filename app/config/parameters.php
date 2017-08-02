@@ -3,9 +3,9 @@
   array (
     'database_host' => '127.0.0.1',
     'database_port' => '',
-    'database_name' => 'prestashopss',
-    'database_user' => 'root',
-    'database_password' => 'CkUyIUY05lZ3',
+    'database_name' => '',
+    'database_user' => '',
+    'database_password' => '',
     'database_prefix' => 'ps_',
     'database_engine' => 'InnoDB',
     'mailer_transport' => 'smtp',
